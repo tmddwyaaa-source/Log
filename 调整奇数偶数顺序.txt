@@ -1,0 +1,27 @@
+void nixu(int* arr, int sz)
+{
+	int* left = arr;
+	int* right = arr + sz - 1;
+	while (left < right)
+	{
+		while ((left < right) && (*left % 2 == 1))
+			left++;
+		while ((left < right) && (*right % 2 == 0))
+			right--;
+		if (left < right)
+		{
+			int x = *left;
+			*left = *right;
+			*right = x;
+		}
+	}
+}
+int main()
+{
+	int arr[10]= { 1,2,3,4,5,6,7,8,9,10 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	nixu(arr, sz);
+	for (int i = 0; i < sz; i++)
+		printf("%d ",arr[i]);
+	return 0;
+}
