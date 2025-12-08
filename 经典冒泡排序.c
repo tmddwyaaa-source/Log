@@ -5,10 +5,10 @@ int main()
 	int arr[10] = { 1,3,4,5,2,7,9,10,6,8 };
     int i = 0;
 	int flag = 1;
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10-1; i++)
     {
         int j = 0;
-        for (j = 0; j < 10-i; j++)
+        for (j = 0; j < 10-i-1; j++)
         {
             if (arr[j+1] > arr[j])
             {
@@ -28,4 +28,5 @@ int main()
     }
     return 0;
 }
+
 
