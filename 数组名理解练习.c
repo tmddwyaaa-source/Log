@@ -1,10 +1,10 @@
-#include <stdio.h>
 int add(int a, int b)
 {
     return a + b;
 }
 int main()
 {
+    int at[3][4] = { 0 };
     char* j = "abcdef";
     char i[] = "abcdef";
     int x[] = { 1,2,3,4,5 };
@@ -55,6 +55,37 @@ int main()
     printf("%d \n", strlen(&i[0] + 1));//5  
 
     printf("sizeof  char * j");
+    printf("%d \n", sizeof(j));//4/8
+    printf("%d \n", sizeof(j + 1));//4/8
+    printf("%d \n", sizeof(*j));//error
+    printf("%d \n", sizeof(j[0]));//error
+    printf("%d \n", sizeof(&j));//4/8
+    printf("%d \n", sizeof(&j + 1));//4/8
+    printf("%d \n", sizeof(&j[0] + 1));//4/8
+
+    printf("strlen  char * j");
+    printf("%d \n", strlen(j));//6
+    printf("%d \n", strlen(j + 1));//5
+    printf("%d \n", strlen(*j));//error
+    printf("%d \n", strlen(j[0]));//error
+    printf("%d \n", strlen(&j));//随机数
+    printf("%d \n", strlen(&j + 1));//随机数-1
+    printf("%d \n", strlen(&j[0] + 1));//5
+
+    printf("sizeof  int at[][]");
+    printf("%d \n", sizeof(at));//48
+    printf("%d \n", sizeof(at[0][0]));//4
+    printf("%d \n", sizeof(at[0]));//16
+    printf("%d \n", sizeof(at[0]+1));//4/8
+    printf("%d \n", sizeof(*(at[0]+1)));//4
+    printf("%d \n", sizeof(at + 1));//at[1][0],所以是4/8
+    printf("%d \n", sizeof(*(at + 1)));//上一个地址的解引用，16
+    printf("%d \n", sizeof(&at[0] + 1));//还是at[1][0]地址，4/8
+    printf("%d \n", sizeof(*( & at[0] + 1)));//16
+    printf("%d \n", sizeof(*at));//16
+    printf("%d \n", sizeof(at[3]));
+    //sizeof是不具体看at[3]合不合理的，所以结果是16
+
 
     return 0;
 }
