@@ -1,38 +1,53 @@
-#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include "contact.h"
+
+void jiem()
+{
+	printf("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
+	printf("&&&& 1.add        2.del   &&&&\n");
+	printf("&&&& 3.search     4.modify&&&&\n");
+	printf("&&&& 5.show       6.sort& &&&&\n");
+	printf("&&&& 0.exit               &&&&\n");
+	printf("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
+
+}
 int main()
 {
-    int flag1 = 0;
-    int flag2 = 0;
-    int arr[20] = { 0 };
-    int i = 0;
-    int n = 0;
-    scanf("%d", &n);
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-        if (i > 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-                flag1 = 1;
-            }
-            else if(arr[i-1]>arr[i])
-            {
-                flag2 = 1;
-            }
-            else
-            {
-                ;
-            }
-        }
-    }
-    if (flag1 + flag2 <= 1)
-    {
-        printf("有序\n");
-    }
-    else
-    {
-        printf("无序\n");
-    }
-    return  0;
+	int input = 0;
+	contact con;
+	initcontact(&con);
+	do
+	{
+		jiem();
+		printf("请做出你的选择:");
+		scanf("%d", &input);
+		switch(input)
+		{
+		case 1:
+			addcontact(&con);
+			break;
+		case 2:
+			delcontact(&con);
+			break;
+		case 3:
+			searcontact(&con);
+			break;
+		case 4:
+			modicontact(&con);
+			break;
+		case 5:
+			showcontact(&con);
+			break;
+		case 6:
+			paixu(&con);
+			break;
+		case 0:
+			printf("退出成功\n");
+			break;
+		default:
+			printf("输入错误请重试\n");
+			break;
+		}
+	} while (input);
+	return 0;
 }
