@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
@@ -32,3 +33,9 @@ void showcontact(contact* pc);
 
 void paixu(contact* pc);
 
+void searcontact(contact* pc);
+
+void delcontact(contact* pc);
+
+void modicontact(contact* pc);
+ 
