@@ -1,4 +1,3 @@
-#include <stdio.h>
 #define GGGG 2333
 //define定义字符串
 
@@ -16,6 +15,13 @@
 
 #define MALLOC(num,type) (type*)malloc((num)*sizeof(type));
 //被替换了(int*)malloc((10)*sizeof(int))
+
+struct kat
+{
+    int t;
+    char r;
+    double c;
+};
 int main()
 {
     int n = 10;
@@ -45,5 +51,33 @@ int main()
     #undef GGGG//取消定义
     //printf("%d\n", GGGG);
 
+    int nm = 29;
+#if 1           //只能是常量表达式，成立运行下面代码
+    printf("mmqqmmwwmm\n"); //如果成立这段代码就运行
+#endif // 1     //注释这里是方便观看配对,#if #endif一对
+
+#define __KAKA__
+#ifdef __KAKA__     //判断是否有定义过,是就进去,反之
+    printf("有定义过\n");
+#endif//__KAKA__
+
+#ifndef NMSN        //判断是否未定义过,是就进去
+    printf("未定义过\n");
+#endif //NMSN
+
+//头文件包含
+#ifndef _TACE_J             //如果没定义就进去,然后定义
+#define _TACE_J             //代码可正常运行
+    int Add(int x, int y);  //多次引用的话就只会导入一次
+#endif                      //比较老
+
+#pragma once        //只导入一次,和上面代码效果一致,比较新
+
+#define OFFSETOF(type,name) (size_t)&(((type*)0)->name)
+    //计算偏移值的宏,将0强转从类型名然后指向变量名的地址
+    //取地址后强转从无符号类型,例0x0003=3;
+    printf("%d\n", OFFSETOF(struct kat,t));   
+    printf("%d\n", OFFSETOF(struct kat, r));
+    printf("%d\n", OFFSETOF(struct kat, c));
     return 0;
 }
