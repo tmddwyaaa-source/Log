@@ -27,21 +27,22 @@ public class Csxml {
             Element book=rqi.createElement("book");//创造book节点
             book.setAttribute("id","b3");//放入节点信息
             Element name=rqi.createElement("name");
-            name.setTextContent("云边有个小卖部");//填入节点信息
+            name.setTextContent("云边有个小卖部");//填入节点文本，就是内容
             Element price=rqi.createElement("price");
             price.setTextContent("20");
             book.appendChild(name);
             book.appendChild(price);
-            //将两个节点放到大节点book里面,绑定关系
+            //将两个节点放到大节点book里面,绑定关系,就像父子关系一样
             rqi.getElementsByTagName("book").item(0).
                     appendChild(book);
             TransformerFactory tf=TransformerFactory.newInstance();
             Transformer tr=tf.newTransformer();
-            //将操作落实到硬盘文件上
-            Source source=new DOMSource(rqi);
+            //factory是工厂,创建工厂在创建工具；用来将操作落实到硬盘文件上的
+            Source source=new DOMSource(rqi);//包装数据源，这样tf工具才能使用它
             Result result=new StreamResult("D:\\Jave\\java\\jave_test\\src\\Xml\\books.xml");
-            tr.transform(source,result);
-            IO.println("添加成功");
+            //创建流结果，把路径写在里面，指定一下要输出的地方
+            tr.transform(source,result);//落实操作
+            IO.println("添加成功");//注意该添加是不会自动匹配xml格式的要手动改
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {
