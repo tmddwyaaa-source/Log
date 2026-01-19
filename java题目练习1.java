@@ -66,13 +66,17 @@ package Fengzlianxi;// 设计一个Book类，要求：
 
 public class Book {
     // 你的代码 here
-        static String id;
-        String name;
-        String author;
-        double price;
-        int stock;
+        private final String id;
+        private String name;
+        private String author;
+        private double price;
+        private int stock;
         public Book(){
-
+            this.id="";
+            this.name="";
+            this.author="";
+            this.price=0;
+            this.stock=0;
         }
         public Book(String id,String name,String auehor,double price,int stock){
             this.id=id;
@@ -97,9 +101,6 @@ public class Book {
         }
         public String getId() {
             return id;
-        }
-        public void setId(String id) {
-            this.id = id;
         }
         public String getName() {
             return name;
@@ -133,5 +134,43 @@ public class Book {
         book.borrow(5);  // 应该失败，库存不足
         book.returnBook(2);  // 归还2本
         System.out.println("当前库存：" + book.getStock());
+    }
+}
+
+package Fengzlianxi;
+// 设计一个Temperature类，要求：
+// 1. 内部以摄氏度(Celsius)存储温度
+// 2. 可以设置摄氏度，但不能设置华氏度
+// 3. 提供获取摄氏度和华氏度的方法
+// 4. 摄氏度转华氏度公式：F = C × 1.8 + 32
+
+public class Temperature {
+    private double celsius;
+    private double fahrenheit;
+    public Temperature() {
+
+    }
+    public Temperature(double celsius){
+        this.celsius = celsius;
+    }
+    public double getCelsius() {
+        return celsius;
+    }
+    public void setCelsius(double celsius){
+        this.celsius = celsius;
+    }
+    public double getFahrenheit() {
+        this.fahrenheit=celsius*1.8+32;
+        return this.fahrenheit;
+    }
+
+    // 你的代码 here
+
+    // 测试代码
+    public static void main(String[] args) {
+        Temperature temp = new Temperature();
+        temp.setCelsius(100);  // 设置100摄氏度
+        System.out.println("摄氏度：" + temp.getCelsius());
+        System.out.println("华氏度：" + temp.getFahrenheit());
     }
 }
