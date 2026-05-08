@@ -1,55 +1,46 @@
-package liu1;
+package Liu.huancongliu;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        //字节流写入文件
-        FileOutputStream fm=null;
+    public static void main(String[] args){
+        BufferedWriter bw=null;     //子类
+        Writer w=null;              //bw的父类
         try{
-            fm=new FileOutputStream("C:\\Users\\tmddw\\Desktop\\big.txt");
-            String wd="你好你好你好你好你好";
-            byte[] bt=wd.getBytes();//以字节的形式写入
-            fm.write(bt);//该写入是强制的,如果没有这个文件
-            //它将会创建这个文件后再进行写入
+            w=new FileWriter("C:\\Users\\user\\Desktop\\缓冲流.txt");
+            bw=new BufferedWriter(w);
+            bw.write("咕咕嘎嘎咕咕嘎嘎!!!!!!!!!");
             IO.println("写入成功");
-        }catch(FileNotFoundException fie){
-            IO.println("文件不存在");
-        }catch(IOException ie){
-            ie.printStackTrace();
+        }catch(Exception e){
+            e.printStackTrace();
         }finally{
-            try {
-                fm.close();
-            } catch (IOException e) {
+            try{
+                bw.close();     //注意顺序，先关闭子类，再关闭父类
+                w.close();
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        IO.println("-------------------------------------------");
-        //字节流读取文件
-        FileInputStream fs=null;
+        IO.println("------------------------------------");
+        BufferedReader br=null;
+        Reader r=null;
         try{
-            fs=new FileInputStream("C:\\Users\\tmddw\\Desktop\\big.txt");
-            while((fs.available())!=0){
-                //available是获取还有多少访问数据的，1个具体的值
-                //不为0就代表还有数据可以访问
-                byte[] bt=new byte[1024];
-                int rd=fs.read(bt);//读取数据,限制在1kb,防止一次访问太多数据出错
-                String str=new String(bt,0,rd);
-                //利用String的构造方法来将读取的数据转化从字符串
-                //String(一次访问多少数据,下标,要转化的数据)
+            r=new FileReader("C:\\Users\\user\\Desktop\\缓冲流.txt");
+            br=new BufferedReader(r);           //父类接收地址，子类接收父类
+            String str=br.readLine();           //br特有的Line方法，一次读一行
+            while(str!=null){
                 IO.println(str);
+                str=br.readLine();
             }
-        }catch(FileNotFoundException ft){
+        }catch(FileNotFoundException fe){
             IO.println("文件不存在");
-        }catch(IOException ie){
-            ie.printStackTrace();
+        }catch(Exception e){
+            e.printStackTrace();
         }finally{
-            try {
-                fs.close();
-            } catch (IOException e) {
+            try{
+                br.close();
+                r.close();
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
