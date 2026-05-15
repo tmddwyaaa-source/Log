@@ -1,7 +1,7 @@
 create database student default character set utf8; 
 #创建数据库 CREAT DATABASE 数据库名称 DEFAULT CHARACTER SET 编码类型
 use student;
-#使用或者说选中数据库
+#使用或者说选中数据库  创建表后一定要use选中，不然会报错
 create table shengfen(id int,name varchar(10),salary float(8,2))
 #创建表 CREATE TABLE 表名称(列名称 数据类型)
 show tables;
