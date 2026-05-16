@@ -16,3 +16,10 @@ delete from bydengji where id_sb=2342;
 truncate table huizhang;
 #清空表数据 TRUNCATE TABLE 表名;
 #整体性清空表数据,不记录，无日志,效率较高
+
+select * from kc;
+#搜寻指定目标 基础格式 SELECT * FROM 表名
+#真格式： SELECT *(*代表搜寻全部列) {各种类型数据条件} FROM(确定 表) 表名
+select name_kc from kc; #	*可以不写
+
+desc kc;#查看表结构信息 DESC 表名
